@@ -27,15 +27,29 @@ c.right = f;
 //   / \   \
 // d    e   f
 
+//Iteration way
+
+// const depthFirstValues = (root) => {
+//   if (root === null) return [];
+//   const result = [];
+//   const stack = [root];
+//   while (stack.length > 0) {
+//     const current = stack.pop();
+//     result.push(current.val);
+//     if (current.right) stack.push(current.right);
+//     if (current.left) stack.push(current.left);
+//   }
+//   return result;
+// };
+
+//Recursion way
+
 const depthFirstValues = (root) => {
-  const stack = [root];
-  while (stack.length > 0) {
-    const current = stack.pop();
-    console.log(current.val);
-    if (current.right) stack.push(current.right);
-    if (current.left) stack.push(current.left);
-  }
+  if (root === null) return [];
+  const leftValues = depthFirstValues(root.left);
+  const rightValues = depthFirstValues(root.right);
+  return [root.val, ...leftValues, ...rightValues];
 };
 
-depthFirstValues(a);
+console.log(depthFirstValues(a));
 //    -> ['a', 'b', 'd', 'e', 'g', 'c', 'f']

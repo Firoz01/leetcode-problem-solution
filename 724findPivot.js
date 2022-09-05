@@ -1,0 +1,3 @@
+var pivotIndex = function (nums) {
+    
+};
